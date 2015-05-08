@@ -284,7 +284,8 @@ class WPCF_Editor
                 /*
                  * Callback
                  */
-                $shortcode = call_user_func( $function, $_POST, $this->field, $this->_meta_type );
+                $shortcode = call_user_func( $function, $_POST, $this->field,
+                        $this->_meta_type );
             } else {
                 /*
                  * Generic
@@ -304,7 +305,8 @@ class WPCF_Editor
                  */
                 $shortcode = preg_replace( '@</?script[^>]*>@im', '', wp_kses_post($shortcode) );
                 // Add additional parameters if required
-                $shortcode = $this->_add_parameters_to_shortcode( $shortcode, $_POST );
+                $shortcode = $this->_add_parameters_to_shortcode( $shortcode,
+                        $_POST );
                 // Insert shortcode
                 echo '<script type="text/javascript">jQuery(function(){tedFrame.close(\''
                 . $shortcode . '\', \'' . esc_js( $shortcode ) . '\');});</script>';

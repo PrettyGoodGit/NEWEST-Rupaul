@@ -17,7 +17,6 @@ class WPToolset_Field_Date extends FieldFactory
 
     public function init()
     {
-        $this->set_placeholder_as_attribute();
     }
 
     public static function registerScripts()
@@ -30,9 +29,8 @@ class WPToolset_Field_Date extends FieldFactory
 
     public static function addFilters()
     {
-        if (has_filter('wptoolset_validation_value_date', array('WPToolset_Field_Date', 'filterValidationValue'))) {
+        if (has_filter('wptoolset_validation_value_date', array('WPToolset_Field_Date', 'filterValidationValue')))
             return;
-        }
         // Filter validation
         add_filter('wptoolset_validation_value_date', array('WPToolset_Field_Date', 'filterValidationValue'));
         add_filter('wptoolset_validation_rule_js', array('WPToolset_Field_Date', 'filterValidationRuleJs'));
@@ -124,9 +122,9 @@ class WPToolset_Field_Date extends FieldFactory
 
         $attr_visible = array(
             'class' => $def_class,
-            'style' => 'display:inline;width:150px;position:relative;',
+            'style' => 'display:inline;width:150px;position:relative;z-index:20;',
             'readonly' => 'readonly',
-            'title' => esc_attr(__('Select', 'wpv-views'))." Date"
+            'title' => esc_attr(__('Select date', 'wpv-views'))
         );
         $attr_hidden = array('class' => $def_class_aux, 'data-ts' => $timestamp, 'data-wpt-type' => 'date');
 
@@ -139,7 +137,7 @@ class WPToolset_Field_Date extends FieldFactory
             '#title' => $title,
             '#description' => $this->getDescription(),
             '#attributes' => $attr_visible,
-            '#name' => $this->getName() . '[display-only]',
+            '#name' => '',
             '#value' => $datepicker,
             '#inline' => true,
         );
@@ -194,7 +192,7 @@ class WPToolset_Field_Date extends FieldFactory
                 '#default_value' => $hour,
                 '#name' => $this->getName() . '[hour]',
                 '#inline' => true,
-                '#attributes' => array('title' => esc_attr(__('Select', 'wpv-views'))." Date"),
+                '#attributes' => array('title' => esc_attr(__('Select hour', 'wpv-views'))),
             );
             if (!empty($attributes_hour_minute)) {
                 $hour_element['#attributes'] = $attributes_hour_minute;
@@ -230,14 +228,12 @@ class WPToolset_Field_Date extends FieldFactory
             '#inline' => true,
             '#markup' => sprintf(
                 '<input type="button" class="button button-secondary js-wpt-date-clear wpt-date-clear" value="%s" %s/>',
-                esc_attr(__('Clear', 'wpv-views'))." Date",
+                esc_attr(__('Clear date', 'wpv-views')),
                 /**
                  * show button if array is empty or timestamp in array is
                  * empty
                  */
-                empty($time_value) || 
-                        (isset($time_value['timestamp']) && 
-                        empty($time_value['timestamp']))? 'style="display:none" ':''
+                empty($time_value) || ( array_key_exists('timestamp', $time_value) && empty($time_value['timestamp']))? 'style="display:none" ':''
             ),
         );
         return $form;
@@ -273,12 +269,6 @@ class WPToolset_Field_Date extends FieldFactory
 
     public static function filterValidationValue($value)
     {
-        /**
-         * validate fimestamp range is possible
-         */
-        if (isset($value['timestamp'])) {
-            return $value['timestamp'];
-        }
         if (isset($value['datepicker'])) {
             return $value['datepicker'];
         }

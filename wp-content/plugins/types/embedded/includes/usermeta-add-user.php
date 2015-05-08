@@ -4,6 +4,7 @@
  * Included on add_action('load-user-new.php') hook.
  */
 add_action( 'in_admin_footer', 'wpcf_usermeta_add_user_templates' );
+// if ( isset( $_REQUEST['action'] ) && in_array( $_REQUEST['action'], array('createuser') ) ) {
 add_action( 'user_register', 'wpcf_usermets_add_user_submit' );
 
 /**

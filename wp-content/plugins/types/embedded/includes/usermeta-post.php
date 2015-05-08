@@ -98,7 +98,6 @@ function wpcf_admin_userprofile_init($user_id){
                         if ( isset( $config['validation']['required'] ) ) {
                             $config['title'] .= '&#42;';
                         }
-                        $config['_title'] = $config['title'];
                         $output .= '
 <div class="wpcf-profile-field-line">
 	<div class="wpcf-profile-line-left">
@@ -114,8 +113,7 @@ function wpcf_admin_userprofile_init($user_id){
                             );
                         }
                         $config['title'] = $config['description'] = '';
-                        $form_name = $user_id->ID? 'your-profile':'createuser';
-                        $output .= wptoolset_form_field( $form_name, $config, $meta );
+                        $output .= wptoolset_form_field( 'your-profile', $config, $meta );
                         if ( $description ) {
                             $output .= $description;
                         }

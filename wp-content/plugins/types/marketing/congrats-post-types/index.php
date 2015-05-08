@@ -1,52 +1,77 @@
-<?php
-$marketing = new WPCF_Types_Marketing_Messages();
-$show_documentation_link = false;
-?>
-<?php
-if ( $top = $marketing->show_top($update) ) {
-    echo '<div class="wpcf-notif">';
-    echo $top;
-    echo '</div>';
-    } else {
+<div class="wpcf-notif">
+    <?php if ( $type == 'post_type' ): ?>
 
-        $message = false;
+        <?php if ( !$update ): ?>
 
-        switch( $type ) {
-        case 'post_type':
-            if ( $update ) {
-                $message = __( 'Congratulations! Your custom post type %s was successfully updated.', 'wpcf' );
-            } else {
-                $message = __( 'congratulations! your new custom post type %s was successfully created.', 'wpcf' );
-            }
-            break;
-        case 'fields':
-            if ( $update) {
-                $message = __( 'Congratulations! Your custom fields group %s was successfully updated.', 'wpcf' );
-            } else {
-                $message = __( 'Congratulations! Your new custom fields group %s was successfully created.', 'wpcf' );
-            }
-            break;
-        case 'taxonomy':
-            if ( $update) {
-                $message = __( 'Congratulations! Your custom taxonomy %s was successfully updated.', 'wpcf' );
-            } else {
-                $message = __( 'Congratulations! Your new custom taxonomy %s was successfully created.', 'wpcf' );
-            }
-            break;
-        case 'usermeta':
-            if ( $update) {
-                $message = __( 'Congratulations! Your user meta group %s was successfully updated.', 'wpcf' );
-            } else {
-                $message = __( 'Congratulations! Your new user meta group %s was successfully created.', 'wpcf' );
-            }
-            break;
-        }
-        $message = sprintf($message, sprintf('<strong>%s</strong>', $title));
-        $marketing->update_message($message);
-?>
-<?php if ( $show_documentation_link ) { ?>
+            <p class="wpcf-notif-congrats"><strong><?php
+        printf( __( 'Congratulations! Your new custom post type %s was successfully created.',
+                        'wpcf' ), $title );
+
+            ?></strong></p>
+        <?php else: ?>
+
+            <p class="wpcf-notif-congrats"><strong><?php
+        printf( __( 'Congratulations! Your custom post type %s was successfully updated.',
+                        'wpcf' ), $title );
+
+            ?></strong></p>
+
+        <?php endif; ?>
+
+    <?php elseif ( $type == 'taxonomy' ): ?>
+
+        <?php if ( !$update ): ?>
+            <p class="wpcf-notif-congrats"><strong><?php
+        printf( __( 'Congratulations! Your new custom taxonomy %s was successfully created.',
+                        'wpcf' ), $title );
+
+            ?></strong></p>
+        <?php else: ?>
+
+            <p class="wpcf-notif-congrats"><strong><?php
+        printf( __( 'Congratulations! Your custom taxonomy %s was successfully updated.',
+                        'wpcf' ), $title );
+
+            ?></strong></p>
+
+        <?php endif; ?>
+	<?php elseif ( $type == 'usermeta' ): ?>
+    	<?php if ( !$update ): ?>
+            <p class="wpcf-notif-congrats"><strong><?php
+        printf( __( 'Congratulations! Your new user meta group %s was successfully created.',
+                        'wpcf' ), $title );
+
+            ?></strong></p>
+        <?php else: ?>
+
+            <p class="wpcf-notif-congrats"><strong><?php
+        printf( __( 'Congratulations! Your user meta group %s was successfully updated.',
+                        'wpcf' ), $title );
+
+            ?></strong></p>
+
+        <?php endif; ?>
+    <?php else: ?>
+
+        <?php if ( !$update ): ?>
+            <p class="wpcf-notif-congrats"><strong><?php
+        printf( __( 'Congratulations! Your new custom fields group %s was successfully created.',
+                        'wpcf' ), $title );
+
+            ?></strong></p>
+        <?php else: ?>
+
+            <p class="wpcf-notif-congrats"><strong><?php
+        printf( __( 'Congratulations! Your custom fields group %s was successfully updated.',
+                        'wpcf' ), $title );
+
+            ?></strong></p>
+
+        <?php endif; ?>
+    <?php endif; ?>
+
     <a href="javascript:void(0);" class="wpcf-button show <?php if ( $update ) echo 'wpcf-show'; else echo 'wpcf-hide'; ?>"><?php echo __( 'Show next steps and documentation' ); ?><span class="wpcf-button-arrow show"></span></a>
-<?php } ?>
+
     <?php $class = $update ? ' wpcf-hide' : ' wpcf-show'; ?>
     <div class="wpcf-notif-dropdown<?php echo $class; ?>">
         <span><strong><?php echo __( 'Next, learn how to:' ); ?></strong></span>
@@ -117,8 +142,6 @@ if ( $top = $marketing->show_top($update) ) {
 
         ?> &raquo;</a></li>
         </ul>
-
         <a href="javascript:void(0);" class="wpcf-button hide" style="float:right;"><?php echo __( 'Hide notifications' ); ?><span class="wpcf-button-arrow hide"></span></a>
     </div><!-- END .wpcf-notif-dropdown -->
-        <?php } ?>
-<!-- END .wpcf-notif -->
+</div><!-- END .wpcf-notif -->

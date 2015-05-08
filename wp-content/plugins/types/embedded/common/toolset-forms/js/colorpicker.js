@@ -5,7 +5,6 @@ var wptColorpicker = (function($) {
                 if ( 'function' == typeof ( $(event.target).data('_bindChange') ) ) {
                     $(event.target).data('_bindChange')();
                 }
-                
             }
         });
         $(document).click(function (e) {

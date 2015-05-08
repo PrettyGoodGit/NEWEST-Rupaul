@@ -15,11 +15,7 @@
 
     <!--TITLE-->
     <div class="wpcf-pr-has-title"><?php echo $this->child_post_type_object->label; ?></div>
-<?php
-if ( isset($this->child_post_type_object->description) && $this->child_post_type_object->description ) {
-    echo wpautop($this->child_post_type_object->description);
-}
-?>
+
     <!--BUTTONS-->
 
     <!--SAVE ALL-->

@@ -3,16 +3,16 @@
  *
  * Loader class
  *
- * $HeadURL: http://plugins.svn.wordpress.org/types/tags/1.6.6.3/embedded/classes/loader.php $
- * $LastChangedDate: 2015-03-25 12:38:40 +0000 (Wed, 25 Mar 2015) $
- * $LastChangedRevision: 1120400 $
+ * $HeadURL: http://plugins.svn.wordpress.org/types/tags/1.6.4/embedded/classes/loader.php $
+ * $LastChangedDate: 2014-11-18 06:47:25 +0000 (Tue, 18 Nov 2014) $
+ * $LastChangedRevision: 1027712 $
  * $LastChangedBy: iworks $
  *
  */
 
 /**
  * Loader Class
- *
+ * 
  * @since Types 1.2
  * @package Types
  * @subpackage Classes
@@ -25,7 +25,7 @@ class WPCF_Loader
 
     /**
      * Settings
-     * @var array
+     * @var array 
      */
     private static $__settings = array();
 
@@ -38,14 +38,11 @@ class WPCF_Loader
                 array('WPCF_Loader', 'renderJsSettings'), 5 );
 		add_filter( 'the_posts', array('WPCF_Loader', 'wpcf_cache_complete_postmeta') );
     }
-
+    
     /**
-     * Cache the postmeta for posts returned by a WP_Query
-     *
-     * @global object $wpdb
-     *
-     */
-
+    * Cache the postmeta for posts returned by a WP_Query
+    */
+    
     public static function wpcf_cache_complete_postmeta( $posts ) {
 		global $wpdb;
 		if ( !$posts )
@@ -57,7 +54,7 @@ class WPCF_Loader
 			$cache_key_looped_post = md5( 'post::_is_cached' . $post->ID );
 			$cached_object = wp_cache_get( $cache_key_looped_post, $cache_group_ids );
 			if ( false === $cached_object ) {
-				$post_ids[] = intval( $post->ID );
+				$post_ids[] = $post->ID;
 				wp_cache_add( $cache_key_looped_post, $post->ID, $cache_group_ids );
 			}
 		}
@@ -153,7 +150,7 @@ class WPCF_Loader
 
     /**
      * Returns HTML formatted output.
-     *
+     * 
      * @param string $view
      * @param mixed $data
      * @return string
@@ -174,7 +171,7 @@ class WPCF_Loader
 
     /**
      * Returns HTML formatted output.
-     *
+     * 
      * @param string $view
      * @param mixed $data
      * @return string
@@ -190,7 +187,7 @@ class WPCF_Loader
 
     /**
      * Returns HTML formatted output.
-     *
+     * 
      * @param string $template
      * @param mixed $data
      * @return string
@@ -211,7 +208,7 @@ class WPCF_Loader
 
     /**
      * Loads model.
-     *
+     * 
      * @param string $template
      * @param mixed $data
      * @return string
@@ -227,7 +224,7 @@ class WPCF_Loader
 
     /**
      * Loads class.
-     *
+     * 
      * @param string $template
      * @param mixed $data
      * @return string
@@ -243,7 +240,7 @@ class WPCF_Loader
 
     /**
      * Loads include.
-     *
+     * 
      * @param string $template
      * @param mixed $data
      * @return string
@@ -259,7 +256,7 @@ class WPCF_Loader
 
     /**
      * Adds JS settings.
-     *
+     * 
      * @staticvar array $settings
      * @param type $id
      * @param type $setting

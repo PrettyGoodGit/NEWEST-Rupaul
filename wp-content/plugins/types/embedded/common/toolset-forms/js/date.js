@@ -33,12 +33,10 @@ var wptDate = (function ($) {
                 el = thiz.closest('.js-wpt-date');
                 el_select = thiz.closest('select');
             }
-            //Added trigger('wptDateSelect'); fix trigger validation and condition on click of clear
-            el_aux.val('').trigger('change').trigger('wptDateSelect');
+            el_aux.val('').trigger('change');
             el.val('');
             el_select.val('0');
             thiz.hide();
-            
         });
     }
 
@@ -81,7 +79,6 @@ var wptDate = (function ($) {
                 var data = 'date=' + dateText;
                 data += '&date-format=' + wptDateData.dateFormatPhp;
                 data += '&action=wpt_localize_extended_date';
-                                
                 $.post(wptDateData.ajaxurl, data, function (response) {
                     response = $.parseJSON(response);
                     if (el_aux.length > 0) {
@@ -89,9 +86,6 @@ var wptDate = (function ($) {
                     }
                     el.val(response['display']);
                     el_clear.show();
-                    
-                    //Fix adding remove label on date
-                    el.prev('label.wpt-form-error').remove();
                 });
                 //el.trigger('wptDateSelect');
             },
@@ -107,7 +101,7 @@ var wptDate = (function ($) {
             yearRange: wptDateData.yearMin + ':' + wptDateData.yearMax,
             beforeShow: function(input) {
                 $(input).css({
-                    zIndex: 159999 // media library has z-index 160000
+                    zIndex: 999999
                 })
             }
         });
