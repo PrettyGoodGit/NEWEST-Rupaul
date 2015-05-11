@@ -82,7 +82,7 @@ echo wpautop($content);
             <form id="uploadForm" method="post" enctype='multipart/form-data' action="/process">
 
                 <div class="fieldRow clearfix">
-                    <label for="entry_name"><span>Name*</span></label>
+                    <label for="entry_name"><span>My Drag Name*</span></label>
                     <input type="text" name="entry_name" id="entry_name" value="<?php echo $entry_name; ?>" />
                 </div>
 

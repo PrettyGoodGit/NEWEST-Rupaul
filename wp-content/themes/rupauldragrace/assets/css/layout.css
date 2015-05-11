@@ -117,7 +117,7 @@ body {
 	font: normal 12px 'texgyreadventorregular', sans-serif;
 	line-height: 1;
 	-webkit-text-size-adjust: none;
-	background: #2c8aff url(../images/tmi_rupaul_bg.jpg) no-repeat top center;
+	background: #7e003d url(../images/tmi_rupaul_bg.jpg) no-repeat top center;
 }
 .pageWrapper {
 	max-width: 1235px;
@@ -252,7 +252,7 @@ body {
 	zoom: 1;
 	text-align: left;
 	width: 117px;
-	font-size: 20px;
+	font-size: 14px;
 	line-height: 100%;
 }
 .upload_form label a {

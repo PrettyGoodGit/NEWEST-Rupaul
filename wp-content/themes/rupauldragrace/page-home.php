@@ -23,7 +23,7 @@ get_header(); ?>
 				$full_image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
 				$medium_image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
 		?>
-        <div class="photoCont" style="background-image: url('<?php echo $medium_image[0]; ?>'');">
+        <div class="photoCont" style="background-image: url('<?php echo $medium_image[0]; ?>');">
             <h3><a class="fancybox" href="<?php echo $full_image[0]; ?>" title="<?php echo $meta['wpcf-entry-name'][0]; ?> from <?php echo $meta['wpcf-entry-company'][0]; ?>">Taking entries now!</a></h3>
         </div>
         <?php endwhile; ?>
