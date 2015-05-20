@@ -119,6 +119,9 @@ body {
 	-webkit-text-size-adjust: none;
 	background: #7e003d url(../images/tmi_rupaul_bg.jpg) no-repeat top center;
 }
+html.ie7 body {
+	height: auto;
+}
 .pageWrapper {
 	max-width: 1235px;
 	margin: 0 auto;
@@ -325,6 +328,8 @@ body {
 }
 .gallery_images li {
 	display: inline-block;
+	*display: inline;
+	zoom: 1;
 	width: 48%;
 	margin: 0 1%;
 }
@@ -333,7 +338,7 @@ body {
 }
 
 #footer {
-	height: 124px
+	height: 124px;
 	overflow: hidden;
 	text-align: center;
 	font-size: 12px;
